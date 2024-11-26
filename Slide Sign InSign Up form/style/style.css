@@ -12,7 +12,7 @@
 body {
 	align-items: center;
 	background-color: var(--white);
-	background: url("../img/21396-gora-otrazhenie-gornyj_hrebet-vselennaya-atmosfera-1920x1080.jpg");
+	background: url("/img/21396-gora-otrazhenie-gornyj_hrebet-vselennaya-atmosfera-1920x1080.jpg");
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -84,7 +84,7 @@ body {
 }
 .overlay {
 	background-color: var(--lightblue);
-	background: url("../img/21396-gora-otrazhenie-gornyj_hrebet-vselennaya-atmosfera-1920x1080.jpg");
+	background: url("/img/21396-gora-otrazhenie-gornyj_hrebet-vselennaya-atmosfera-1920x1080.jpg");
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
