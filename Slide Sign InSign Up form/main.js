@@ -1,6 +1,6 @@
 const signInBtn = document.getElementById("signIn");
 const signUpBtn = document.getElementById("signUp");
-const fistForm = document.getElementById("form1");
+const firstForm = document.getElementById("form1");  // Исправление на firstForm
 const secondForm = document.getElementById("form2");
 const container = document.querySelector(".container");
 
@@ -14,14 +14,14 @@ signUpBtn.addEventListener("click", () => {
     container.classList.add("right-panel-active");
 });
 
-// Handle registration (Sign Up)
-fistForm.addEventListener("submit", (e) => {
+// Обработка регистрации (Sign Up)
+firstForm.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("Registration form submitted");
 
-    const nickname = fistForm.querySelector('input[type="text"]').value;
-    const email = fistForm.querySelector('input[type="email"]').value;
-    const password = fistForm.querySelector('input[type="password"]').value;
+    const nickname = firstForm.querySelector('input[type="text"]').value;
+    const email = firstForm.querySelector('input[type="email"]').value;
+    const password = firstForm.querySelector('input[type="password"]').value;
 
     console.log("Nickname:", nickname);
     console.log("Email:", email);
@@ -34,19 +34,19 @@ fistForm.addEventListener("submit", (e) => {
             password
         };
 
-        // Save user data in localStorage (Note: you can also store this in an array to handle multiple users)
-        localStorage.setItem("userData", JSON.stringify(userData));
+        // Сохраняем данные пользователя в localStorage (используем email как ключ)
+        localStorage.setItem(email, JSON.stringify(userData));
         console.log("User data saved to localStorage:", userData);
 
-        // Redirect to another HTML page after registration
-        window.location.href = "welcome.html"; // Change 'welcome.html' to your desired page
+        // Перенаправляем на другую страницу после регистрации
+        window.location.href = "welcome.html"; // Замените 'welcome.html' на вашу нужную страницу
     } else {
         alert("Please fill out all fields.");
         console.log("Missing fields in registration form");
     }
 });
 
-// Handle login (Sign In)
+// Обработка входа (Sign In)
 secondForm.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("Login form submitted");
@@ -57,19 +57,18 @@ secondForm.addEventListener("submit", (e) => {
     console.log("Email or Nickname:", loginEmailOrNickname);
     console.log("Password:", loginPassword);
 
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    const storedUserData = JSON.parse(localStorage.getItem(loginEmailOrNickname));  // Используем email как ключ для поиска данных
     console.log("Stored user data from localStorage:", storedUserData);
 
-    // Check if user data exists in localStorage
+    // Проверяем, есть ли данные пользователя в localStorage
     if (storedUserData) {
-        // Check if email/nickname and password match
-        if ((storedUserData.email === loginEmailOrNickname || storedUserData.nickname === loginEmailOrNickname) &&
-            storedUserData.password === loginPassword) {
+        // Проверяем, совпадает ли пароль
+        if (storedUserData.password === loginPassword) {
             console.log("Login successful");
-            window.location.href = "welcome.html"; // Redirect to welcome page after successful login
+            window.location.href = "welcome.html"; // Перенаправляем на страницу приветствия
         } else {
-            alert("Invalid credentials. Please try again.");
-            console.log("Invalid credentials");
+            alert("Invalid password. Please try again.");
+            console.log("Invalid password");
         }
     } else {
         alert("No user found. Please register first.");
